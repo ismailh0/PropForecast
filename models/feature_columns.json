@@ -1,0 +1,14 @@
+[
+  "year",
+  "month",
+  "quarter",
+  "latitude",
+  "longitude",
+  "property_type_D",
+  "property_type_F",
+  "property_type_S",
+  "property_type_T",
+  "new_build",
+  "is_leasehold",
+  "avg_district_price"
+]

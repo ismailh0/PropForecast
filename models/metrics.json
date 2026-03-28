@@ -1,0 +1,12 @@
+{
+  "mae": 79295.19,
+  "rmse": 157021.03,
+  "r2": 0.7045,
+  "mdae": 43157.89,
+  "train_years": "2018-2023",
+  "test_years": "2024-2025",
+  "test_rows": 1206835,
+  "n_estimators": 50,
+  "max_depth": 20,
+  "min_samples_leaf": 10
+}
