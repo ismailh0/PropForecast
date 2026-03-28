@@ -6,7 +6,7 @@ A UK property price visualisation and forecasting web application built using Fl
 
 ## OneDrive Download link
 
-https://cityuni-my.sharepoint.com/:f:/g/personal/ismail_hussain_city_ac_uk/IgCti1DOD2AhQK9ue2Nn3geCAbmt_LllB3BW41Nc75ZwdmY?e=q48AcB
+https://cityuni-my.sharepoint.com/:f:/g/personal/ismail_hussain_city_ac_uk/IgB6TWxrnWJMRpMx7Elpm2KUAeRYOiBahWzEywmAhOAdUKQ?e=Sr3XDw
 
 ---
 
@@ -97,7 +97,6 @@ pip install -r requirements.txt
 ```bash
 cd frontend-react
 npm install
-cd ..
 ```
 
 **3. Place the large files** in their correct folders as described above. (IF NOT INCLUDED)
