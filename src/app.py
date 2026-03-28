@@ -9,7 +9,7 @@ from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-# CONFIG
+#CONFIG
 
 BASE_DIR   = Path(__file__).resolve().parent.parent
 DB_PATH    = BASE_DIR / "data_clean" / "propforecast.db"
@@ -30,7 +30,7 @@ OVERALL_AVG   = dist_lookup["overall_avg"]
 print("Ready.\n")
 
 
-# HELPERS
+#HELPERS
 
 def get_db():
     conn = sqlite3.connect(str(DB_PATH))
@@ -39,7 +39,7 @@ def get_db():
 
 
 def normalize_postcode(raw):
-    # e.g. 'sw1a1aa' -> 'SW1A 1AA'
+    
     s = raw.upper().replace(" ", "")
     if len(s) < 4:
         return s
@@ -47,15 +47,13 @@ def normalize_postcode(raw):
 
 
 def normalize_district(name):
-    # postcodes.io returns title-case; Land Registry stores uppercase
-    # also handles: 'Kingston upon Hull, City of' -> 'CITY OF KINGSTON UPON HULL'
     s = name.upper().strip()
     if s.endswith(", CITY OF"):
         s = "CITY OF " + s[:-9].strip()
     return s
 
 
-# ROUTES
+#ROUTES
 
 @app.route("/api/properties")
 def properties():
@@ -94,8 +92,8 @@ def history():
         return jsonify({"error": "postcode parameter is required"}), 400
 
     postcode    = normalize_postcode(raw)
-    outward     = postcode.replace(" ", "")[:-3]  # e.g. 'SW1A 1AA' -> 'SW1A'
-    like_param  = outward + " %"                  # e.g. 'SW1A %'
+    outward     = postcode.replace(" ", "")[:-3]  
+    like_param  = outward + " %"                  
 
     conn = get_db()
     try:
@@ -177,7 +175,7 @@ def forecast():
 
     quarter = math.ceil(month / 3)
 
-    # build feature row — must match training order exactly
+    #build feature row — must match training order
     row = {
         "year":               year,
         "month":              month,
@@ -194,7 +192,7 @@ def forecast():
     }
     X = pd.DataFrame([row], columns=feature_cols)
 
-    # model predicts log(price), convert back to £
+    #model predicts log(price), convert back to £
     try:
         log_price       = model.predict(X)[0]
         predicted_price = round(float(np.exp(log_price)), 2)
@@ -231,5 +229,5 @@ def method_not_allowed(e):
 
 
 if __name__ == "__main__":
-    # use_reloader=False stops Flask loading the model twice on startup
+    #stops Flask loading the model twice on startup
     app.run(debug=True, use_reloader=False, port=5000)
